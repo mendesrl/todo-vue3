@@ -8,6 +8,7 @@
       aria-label="Adicine uma nova tarefa"
       placeholder="Adicine uma nova tarefa"
     />
+    <button @click="addTodo">Add</button>
     <ul>
       <li v-for="todo of todos" :key="todo.id">
         {{ todo.name }}
