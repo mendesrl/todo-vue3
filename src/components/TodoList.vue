@@ -1,15 +1,18 @@
 <template>
-  <div>
-    <h1>Todo List</h1>
-    <input
-      type="text"
-      v-model="todoName"
-      @keyup.enter="addTodo"
-      aria-label="Adicine uma nova tarefa"
-      placeholder="Adicine uma nova tarefa"
-    />
-    <button @click="addTodo">Add</button>
-    <ul>
+  <div class="component">
+    <h1 class="component__title">Lista de Tarefas</h1>
+    <div class="component__task--add">
+      <input
+        type="text"
+        aria-label="Adicione uma nova tarefa"
+        placeholder="Adicione uma nova tarefa"
+        v-model="taskName"
+        @keyup.enter="addTodo"
+      />
+      <button @click="addTodo">+</button>
+    </div>
+
+    <!-- <ul>
       <li
         v-for="todo of todos"
         :key="todo.id"
@@ -31,7 +34,7 @@
           x
         </div>
       </li>
-    </ul>
+    </ul> -->
   </div>
 </template>
 
@@ -45,7 +48,7 @@ export default {
   data() {
     return {
       todos: [],
-      todoName: "",
+      taskName: "",
     };
   },
   created() {
@@ -55,7 +58,6 @@ export default {
     async loadData() {
       try {
         const res = await axios.get(baseURL);
-
         this.todos = res.data;
       } catch (e) {
         console.error(e);
@@ -64,11 +66,11 @@ export default {
     async addTodo() {
       try {
         const res = await axios.post(baseURL, {
-          name: this.todoName,
+          name: this.taskName,
           done: false,
         });
         this.todos = [...this.todos, res.data];
-        this.todoName = "";
+        this.taskName = "";
       } catch (e) {
         console.error(e);
       }
@@ -76,7 +78,6 @@ export default {
     async doneTodo(id) {
       try {
         await axios.patch(`${baseURL}/${id}`, { done: true });
-
         this.todos = this.todos.map((todo) => {
           if (todo.id === id) {
             todo.done = true;
@@ -90,7 +91,6 @@ export default {
     async deleteTodo(id) {
       try {
         await axios.delete(`${baseURL}/${id}`);
-
         this.loadData();
       } catch (e) {
         console.error(e);
@@ -101,22 +101,44 @@ export default {
 </script>
 
 <style scoped>
-h1 {
-  text-decoration: underline;
+.component {
+  margin: 32px;
 }
-
+.component__title {
+  color: #fd9644;
+  margin: 16px 8px;
+}
+.component__task--add {
+    display: flex;
+    align-items: center;
+}
+.component__task--add input {
+    width: 70%;
+    border-radius: 0.4rem;
+    padding: 8px;
+    border: 1px solid #6b6b6a;
+    margin: 16px 8px;
+}
+.component__task--add input:focus {
+    outline-color: #fd9644;
+    
+}
+.component__task--add button { 
+    width: 30%;
+    background-color: #fd9644;
+    border: 1px solid #fd9644;
+    color: #ffff;
+    font-weight: bold;
+    border-radius: 50px;
+    width: 30px;
+    height: 30px;
+    font-size: 24px;
+}
 li {
   color: white;
 }
 
-input {
-  width: 100%;
-  padding: 1rem;
-  border-radius: 0.4rem;
-  border: 1px solid #fd9644;
-  margin-bottom: 2rem;
-  font-size: 1.5rem;
-}
+
 
 .done {
   text-decoration: line-through;

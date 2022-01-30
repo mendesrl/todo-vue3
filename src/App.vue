@@ -18,12 +18,14 @@ html,
 body {
   margin: 0;
   padding: 0;
-  
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 h1 {
   margin: 0;
   padding: 0;
-  color: #f6b93b;
 }
 
 ul {
@@ -34,12 +36,10 @@ ul {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-size: 3rem;
   padding: 0 2rem;
-  background: #38ada9;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 100%;
 }
 </style>
