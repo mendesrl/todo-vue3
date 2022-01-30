@@ -18,8 +18,7 @@ html,
 body {
   margin: 0;
   padding: 0;
-  min-height: 100vh;
-  height: 100%;
+  
 }
 h1 {
   margin: 0;
@@ -32,7 +31,6 @@ ul {
 }
 
 #app {
-  height: 100%;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -42,5 +40,6 @@ ul {
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100vh;
 }
 </style>
