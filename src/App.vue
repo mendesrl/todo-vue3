@@ -30,6 +30,7 @@ h1 {
 
 ul {
   margin: 0;
+  padding: 0;
 }
 
 #app {
